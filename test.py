@@ -141,7 +141,8 @@ def main():
     y_true = pd.Series(test_ds.labels, index=test_ds.annotations["id"], name="y_true")
     y_true = y_true.map(lambda x: np.array([int(i) for i in x.split()]))
     preds_df = pd.DataFrame(
-        {"y_pred": nearest_preds, "conf": conf_scores, 'nearest': nearest_indices}, index=test_ds.annotations["id"]
+        {"y_pred": nearest_preds, "conf": conf_scores, "nearest": nearest_indices},
+        index=test_ds.annotations["id"],
     )
 
     gap_score, landmark_acc, df = compute_metrics(preds_df, y_true)
